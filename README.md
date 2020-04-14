@@ -7,7 +7,7 @@ Specifically, the codes solve a set of partial differential equations that descr
 
 Here, n is the crystal size distribution (CSD), u z is the slurry flow velocity, G is the crystal growth rate, B is the nucleation rate, nseed is the seed CSD, z is the reactor axis, L is the crystal size axis, and t is the time axis. A_{f}(t, z) = πR_{f}^{2}(t, z) is the flow area within the tube which changes with time and along the reactor length due to encrustation. Majumder and Nagy have developed a model for encrustation in a PFC inspired from fouling kinetics commonly found in heat exchangers (Figure 1). 
 
-![](Images/PFC_domain.png)
+![](Images/PFC_domain.jpg)
 
 The encrustation dynamics can be summarized as follows:
 
