@@ -82,9 +82,9 @@ The whole script may be run simply by typing *PFC_main* onto the terminal. Initi
 ```
 Example plots of initial conditions:
 
-|figure 1 |figure 2 |figure 3|
-|---------|---------|--------|
-|![](Images/initial_encrust_thickness.png)|![](Images/initial_tube_concentration.png)|![](Images/initial_tube_temperature.png)
+|figure 1 |figure 2|
+|---------|--------|
+|![](Images/initial_encrust_thickness.png)|![](Images/initial_tube_temperature.png)
 
 When the user press any key to continue, the computation continues and numerical output from the ode is printed until it is solved. 
 
@@ -142,3 +142,6 @@ avg_CV: 0.16477
 crustmass: 0.15972
 >> 
 ```
+|figure 1   |figure 2|
+|-----------|--------|
+|![](Images/output_fig1.png)|![](Images/output_fig2.png)|
