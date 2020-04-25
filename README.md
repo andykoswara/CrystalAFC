@@ -92,22 +92,6 @@ When the user press any key to continue, the computation continues and numerical
 t =
 
      0
-     
-y =
-
-   1.0e+10 *
-
-    0.0000
-    0.0000
-    0.0000
-    0.0000
-    0.0000
-    0.0000
-    0.0000
-    0.0000
-    0.0000
-    ...
-    
 ...
 
 t =
