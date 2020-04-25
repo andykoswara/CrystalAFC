@@ -142,6 +142,5 @@ avg_CV: 0.16477
 crustmass: 0.15972
 >> 
 ```
-|figure 1   |figure 2|
-|-----------|--------|
-|![](Images/output_fig1.png)|![](Images/output_fig2.png)|
+![](Images/output_fig1.png)
+![](Images/output_fig2.png)|
