@@ -1,5 +1,80 @@
-# CrystalAFC
+# CrystalAFC Overview
+
 MATLAB scripts to simulate anti-fouling control of plug-flow crystallization via heating and cooling cycle as described in https://doi.org/10.1016/j.ifacol.2015.08.180 and https://doi.org/10.1109/LLS.2017.2661981
+
+# Dependencies
+
+```ruby
+MATLAB R2015a
+```
+
+## Main File
+
+## Output 
+The whole script may be run simply by typing *PFC_main* onto the terminal. Initial conditions will then be plotted for the user to check prior to continuing with the simulation.  
+
+```ruby
+>> PFC_main
+>> Check initial conditions. Press any key to continue
+```
+Example plots of initial conditions:
+
+![](Images/)
+![](Images/)
+![](Images/)
+
+```ruby
+t =
+
+     0
+
+
+y =
+
+   1.0e+10 *
+
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    ...
+    
+...
+
+t =
+
+   7.6341e+03
+
+
+y =
+
+   1.0e+10 *
+
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    ...
+    0.0213
+    0.0598
+    0.2209
+    0.7063
+    1.6612
+    2.9930
+    3.2032
+    2.7485
+    1.8041
+    0.7871
+    0.2102
+    0.0327
+    0.0029
+    ...  
+```
 
 Specifically, the scripts solve a set of partial differential equations that describes a crystallization and encrustation process in a plug flow:
 
