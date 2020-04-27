@@ -78,7 +78,7 @@ The whole script may be run simply by typing *PFC_main* onto the terminal. Initi
 
 ```matlab
 >> PFC_main
->> Check initial conditions. Press any key to continue
+Check initial conditions. Press any key to continue
 ```
 Example plots of initial conditions:
 
