@@ -8,21 +8,19 @@
 - [Output](#Output)
 
 ## Overview
-MATLAB scripts to simulate anti-fouling control of plug-flow crystallization via heating and cooling cycle as described in https://doi.org/10.1016/j.ifacol.2015.08.180 and https://doi.org/10.1109/LLS.2017.2661981
-
-The scripts solve a set of partial differential equations that describes a crystallization and encrustation process in a plug flow:
+MATLAB scripts to simulate anti-fouling control of plug-flow crystallization via heating and cooling cycle as described in https://doi.org/10.1016/j.ifacol.2015.08.180 and https://doi.org/10.1109/LLS.2017.2661981. The scripts solve a set of partial differential equations (PDE) that describe a crystallization and encrustation process in a plug flow:
 
 ![](Images/PFC-PBM_PDE.png)
 
-Here, n is the crystal size distribution (CSD), u z is the slurry flow velocity, G is the crystal growth rate, B is the nucleation rate, nseed is the seed CSD, z is the reactor axis, L is the crystal size axis, and t is the time axis. A_{f}(t, z) = πR_{f}^{2}(t, z) is the flow area within the tube which changes with time and along the reactor length due to encrustation. A model for encrustation in a PFC inspired from fouling kinetics commonly found in heat exchangers is shown in the figure below.
+Here, *n* is the crystal size distribution (CSD), *u* z is the slurry flow velocity, *G* is the crystal growth rate, *B* is the nucleation rate, *n_{seed}* is the seed CSD, *z* is the reactor axis, *L* is the crystal size axis, and *t* is the time axis. *A_{f}(t, z)* = *πR_{f}^{2}(t, z)* is the flow area within the tube which changes with time and along the reactor length due to encrustation. A model for encrustation in a PFC inspired from fouling kinetics commonly found in heat exchangers is shown in the figure below.
 
 ![](Images/PFC_domain.jpg)
 
-The domains of the crystallization and encrustation are divided into three regions, namely the reactor wall (Ω_{W} : r ∈ [R_{f}, R_{0}]), the encrust (Ω_{E} : r ∈ [R_{i} , R_{f} ]) and the convection within the tube (Ω_{T} : r ∈ [0, R_{i} ]). Additionally, the encrustation dynamics can be summarized as follows:
+The domains of the crystallization and encrustation are divided into three regions, namely the reactor wall *(Ω_{W} : r ∈ [R_{f}, R_{0}])*, the encrust *(Ω_{E} : r ∈ [R_{i} , R_{f} ])* and the convection within the tube *(Ω_{T} : r ∈ [0, R_{i} ])*. Additionally, the encrustation dynamics can be summarized as follows:
 
 ![](Images/encrust_ODE.png)
 
-Where m_{d} and m_{r} are the mass deposited and removed, respectively, δ is the encrust thickness, k_{E} is the thermal conductivity, χ is the thermal resistance, ρ_{E} is the encrust density, m is the encrust mass, k_{m} is the mass transfer coefficient of solute from the bulk solution to the encrust film, k_{R} is the adsorption rate of solute to encrust, C_{b} is the bulk solute concentration, C_{sat} is the saturation concentration within the boundary or film layer, w is the bulk fluid velocity. α is the linear expansion coefficient, ∆T is the temperature difference between the reactor wall and the encrust surface, d_{p} is the encrust particle diameter, η is the film viscosity, and g is the gravitational acceleration. The adsorption rate is modeled as an Arrhenius-type expression where k_{R0} is the adsorption rate constant, ∆E_{f} is the activation energy, R is the ideal gas constant, and T_{f} is the film temperature.
+Where *m_{d}* and *m_{r}* are the mass deposited and removed, respectively, *δ* is the encrust thickness, *k_{E}* is the thermal conductivity, *χ* is the thermal resistance, *ρ_{E}* is the encrust density, *m* is the encrust mass, *k_{m}* is the mass transfer coefficient of solute from the bulk solution to the encrust film, *k_{R}* is the adsorption rate of solute to encrust, *C_{b}* is the bulk solute concentration, *C_{sat}* is the saturation concentration within the boundary or film layer, *w* is the bulk fluid velocity. *α* is the linear expansion coefficient, *∆T* is the temperature difference between the reactor wall and the encrust surface, *d_{p}* is the encrust particle diameter, *η* is the film viscosity, and *g* is the gravitational acceleration. The adsorption rate is modeled as an Arrhenius-type expression where *k_{R0}* is the adsorption rate constant, *∆E_{f}* is the activation energy, *R* is the ideal gas constant, and *T_{f}* is the film temperature.
 
 Please look into the articles for more details, including the mass and energy balances. 
 
@@ -34,7 +32,7 @@ MATLAB R2015a
 
 ## Main File
 
-The corresponding script to the above equation is the following:
+The PFC_main.m is the main file which solves the above set of equations. It is is divided into three sections; The first is the initialization of control parameters, including reactor dimensions and jacket temperatures. 
 
 ```matlab
 %% Initialize parameters
@@ -57,6 +55,7 @@ save('control_params.mat', 'flow', 'Tfeed', 'Tseg', 'resol', 'noseg', ...
     'SizSeg', 'xmin', 'xmax', 'Nx', 'Tc', 'Tmax', 'ti', 'tf', 'Nt', ...
     'savefilename')
 ```
+The initial conditions (ICs) are then calculated for input into the PDEs:
 
 ```matlab
 %% calculating initial conditions
@@ -72,6 +71,7 @@ L=(delL/2:delL:Lmax-delL/2); % [m], grid range
 save('initial_conditions.mat', 'Tw0', 'Te0', 'T0', 'C0', 'delta0',... 
     'f0', 'fin')
 ```
+The PDEs are defined as a separate function named encrustpfcV6 defined in a separate .m file, where the high-resolution finite volume method is implemented. It is also where the crystallization system parameters are set. To run the simulation, the encrustpfcV6 function is called with control parameters and ICs as inputs
 
 ```matlab
 [fn,Tw,Te,T,f,delta,Rf,C,Sigma,rest,L43,blockage,t,x,r,L] = ...
@@ -90,7 +90,6 @@ Check initial conditions. Press any key to continue
 ```
 Example plots of initial conditions:
 
-|figure 1 |figure 2|
 |---------|--------|
 |![](Images/initial_encrust_thickness.png)|![](Images/initial_tube_temperature.png)
 
@@ -134,5 +133,7 @@ avg_CV: 0.16477
 crustmass: 0.15972
 >> 
 ```
-![](Images/output_fig1.png)
-![](Images/output_fig2.png)|
+|output variables across tube length and time|
+|-----------------------------------------------|
+|![](Images/output_fig1.png)|
+|![](Images/output_fig2.png)|
