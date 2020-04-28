@@ -90,6 +90,7 @@ Check initial conditions. Press any key to continue
 ```
 Example plots of initial conditions:
 
+|figure 1   |figure 2|
 |---------|--------|
 |![](Images/initial_encrust_thickness.png)|![](Images/initial_tube_temperature.png)
 
