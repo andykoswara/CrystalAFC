@@ -1,6 +1,3 @@
-# CrystalAFC
-MATLAB scripts to simulate anti-fouling control of plug-flow crystallization via heating and cooling cycle as described in https://doi.org/10.1016/j.ifacol.2015.08.180 and https://doi.org/10.1109/LLS.2017.2661981. 
-
 ## Table of Contents
 
 - [Overview](#Overview)
